@@ -28,13 +28,11 @@ const CreateExchangeAd = () => {
     const [condition, setCondition] = useState("new");
     const [selectedImage, setSelectedImage] = useState(null);
 
+
     const pickImage = async () => {
         const result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.Images,
-          allowsEditing: true,
-
-        });
-        
+          mediaTypes: ImagePicker.MediaTypeOptions.Images
+        });  
     
         if (!result.canceled) {
             const imageUri = result.uri;

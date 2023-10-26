@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
 
     //DisplayExchangeAds screen
     adsList:{
-        marginTop:20
+        marginTop:20,
     },
     adbox:{
         flexDirection:"row",

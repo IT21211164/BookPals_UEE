@@ -56,9 +56,9 @@ const DisplayExchangeAds = () => {
             </View>
 
             <View style={styles.adsList}>
-                <View style={{ marginBottom:200 }}>
+                <View style={{ marginBottom:50 }}>
                 <FlatList 
-                        data={details}
+                        data={details.slice().reverse()}
                         keyExtractor={(item) => item._id}
                         renderItem={({ item }) => (
 

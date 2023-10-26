@@ -56,12 +56,10 @@ const styles = StyleSheet.create({
         flexDirection:"row"
     },
     requestImage:{
-        width:66,
-        height:69,
-        marginRight:10,
-        borderRadius:15,
-        borderWidth:2,
-        borderColor:"#FA7A50"
+        width:60,
+        height:64,
+        marginRight:15,
+        borderRadius:5,
     },
     statusnewreq:{
         color:"#192A56",

@@ -65,7 +65,7 @@ const ExchangeRequests = () => {
                             renderItem={({ item }) => (
 
                     <TouchableOpacity style = {styles1.requestbox} onPress={()=>navigateToExchangeRequestDetails(item._id, item.status)}>
-                        <Image source={require("../../assets/profile1.jpg")}
+                        <Image source={require("../../assets/user.png")}
                         style = {styles1.requestImage}
                         ></Image>
 
