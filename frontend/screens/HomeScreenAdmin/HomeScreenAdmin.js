@@ -292,7 +292,8 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
-    alignItems: "center"
+    alignItems: "center",
+    transform: [{ translateX: -40 }]
   },
 
   userInfo: {
@@ -301,7 +302,8 @@ const styles = StyleSheet.create({
   },
 
   userName: {
-    fontSize: 20,
+    width: 220,
+    fontSize: 19,
     color: "black",
     fontWeight: "600"
   },

@@ -18,6 +18,7 @@ function Notifications() {
   const [preferedCategory, setpreferedCategory] = useState("null");
   const [notificationsList, setNotificationsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const getUserPreferences = async () => {
     try {
@@ -50,6 +51,7 @@ function Notifications() {
         setIsLoading(false);
       }
     } catch (error) {
+      setError("Notifications could not be fetched. Please try again.");
       console.log("Notifications can not be fetched");
       console.log(error);
     }
@@ -68,18 +70,20 @@ function Notifications() {
       <Text style={{ fontSize: 23, color: "#192A56", fontWeight: "600" }}>
         Notifications
       </Text>
-      <ScrollView
-        contentContainerStyle={styles.notificationsScrollContainer}
-        style={{ width: "100%", height: 700, paddingTop: 10 }}
-      >
-        {isLoading ? (
-          <ActivityIndicator
-            size="large"
-            color="#FA7A50"
-            style={{ marginTop: 300 }}
-          />
-        ) : (
-          notificationsList.map((notification) => {
+      {isLoading ? (
+        <ActivityIndicator
+          size="large"
+          color="#FA7A50"
+          style={{ marginTop: 20 }}
+        />
+      ) : error ? (
+        <Text style={{ color: "red" }}>{error}</Text>
+      ) : (
+        <ScrollView
+          contentContainerStyle={styles.notificationsScrollContainer}
+          style={{ width: "100%", height: 700, paddingTop: 10 }}
+        >
+          {notificationsList.map((notification) => {
             const { _id, message, createdAt } = notification;
             return (
               <View key={_id} style={styles.notificationDetailsContainer}>
@@ -95,9 +99,9 @@ function Notifications() {
                 </View>
               </View>
             );
-          })
-        )}
-      </ScrollView>
+          })}
+        </ScrollView>
+      )}
     </View>
   );
 }

@@ -4,7 +4,6 @@ import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Picker } from "@react-native-picker/picker";
 import axiosInstance from "../../api/axios";
-import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function DonationForm() {
@@ -70,8 +69,8 @@ function DonationForm() {
           donationItemCategory,
           donatingItem
         });
-        const donationSubmitResponse = await axios.post(
-          "http://192.168.8.159:3500/bookpals/donations/create-donation",
+        const donationSubmitResponse = await axiosInstance.post(
+          "/donations/create-donation",
           {
             donorId: userId,
             donorName,

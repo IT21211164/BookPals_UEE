@@ -5,11 +5,14 @@ import {
   StyleSheet,
   ActivityIndicator,
   Image,
-  ScrollView
+  ScrollView,
+  TextInput,
+  TouchableOpacity
 } from "react-native";
 import axiosInstance from "../../api/axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Book from "../../components/Book";
+import { useNavigation } from "@react-navigation/native";
 
 function HomeContent() {
   const [bookData, setBookData] = useState([]);
@@ -24,6 +27,9 @@ function HomeContent() {
   const [scienceFiction, setScienceFiction] = useState([]);
   const [romanceBooks, setRomanceBooks] = useState([]);
   const [recommendedBooks, setRecommendedBooks] = useState([]);
+  const [searchPrompt, setSearchPrompt] = useState("");
+
+  const navigation = useNavigation();
 
   const getUserPreferences = async () => {
     try {
@@ -82,8 +88,38 @@ function HomeContent() {
     setScienceFiction(fiction);
   }, [bookData]);
 
+  const searchBook = () => {
+    console.log(searchPrompt);
+
+    const searchResults = bookData.filter((book) => {
+      return book.bookName
+        .toString()
+        .toLowerCase()
+        .includes(searchPrompt.toString().toLowerCase());
+    });
+
+    navigation.navigate("SearchResults", { results: searchResults });
+    setSearchPrompt("");
+  };
+
   return (
     <View style={styles.homeContainer}>
+      {/* search bar */}
+      <View style={styles.searchContainer}>
+        <TextInput
+          placeholder="Enter book name"
+          style={styles.searchInputField}
+          value={searchPrompt}
+          onChangeText={(text) => setSearchPrompt(text)}
+        />
+        <TouchableOpacity style={styles.searchBtn} onPress={() => searchBook()}>
+          <Image
+            style={styles.searchIcon}
+            source={require("../../assets/icons/search-handle.png")}
+          />
+        </TouchableOpacity>
+      </View>
+
       <Text style={styles.subHeadline}>Recommended For You</Text>
       <View style={styles.bookShelfContainer}>
         <ScrollView
@@ -182,6 +218,40 @@ const styles = StyleSheet.create({
     margin: 5,
     fontWeight: "600",
     color: "#192A56"
+  },
+
+  searchContainer: {
+    width: "100%",
+    padding: 5,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+
+  searchInputField: {
+    width: "84%",
+    padding: 6,
+    paddingLeft: 14,
+    fontSize: 18,
+    color: "grey",
+    borderWidth: 1,
+    borderColor: "grey",
+    borderRadius: 6
+  },
+
+  searchBtn: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 53,
+    height: 53,
+    borderRadius: 10,
+    backgroundColor: "#FA7A50"
+  },
+
+  searchIcon: {
+    width: 30,
+    height: 30
   }
 });
 

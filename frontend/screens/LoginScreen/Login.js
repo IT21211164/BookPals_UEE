@@ -25,13 +25,14 @@ const LoginForm = () => {
       navigation.navigate("HomeScreenAdmin");
     }
   };
+
   const handleLogin = async () => {
     if (email && password) {
       try {
-        const loginResponse = await axiosInstance.post(
-          "http://192.168.1.27:3500/bookpals/login",
-          { email, password }
-        );
+        const loginResponse = await axiosInstance.post("/login", {
+          email,
+          password
+        });
 
         if (loginResponse.data) {
           const user = loginResponse.data;
@@ -93,16 +94,18 @@ const LoginForm = () => {
       >
         <Text style={styles.buttonText}>Submit</Text>
       </TouchableOpacity>
-      <Text
-        style={{
-          fontSize: 15,
-          color: "grey",
-          marginTop: 10,
-          textDecorationLine: "underline"
-        }}
-      >
-        Don't have an account?
-      </Text>
+      <TouchableOpacity onPress={() => navigation.navigate("RegisterForm")}>
+        <Text
+          style={{
+            fontSize: 15,
+            color: "grey",
+            marginTop: 10,
+            textDecorationLine: "underline"
+          }}
+        >
+          Don't have an account?
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -113,7 +116,8 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "white"
   },
 
   appLogo: {
