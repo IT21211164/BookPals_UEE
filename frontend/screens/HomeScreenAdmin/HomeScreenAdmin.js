@@ -61,6 +61,23 @@ function HomeScreenAdmin() {
     closeMenu();
   };
 
+  const goToDisplayExchangeAds = () => {
+    navigation.navigate("DisplayExchangeAds");
+    closeMenu();
+  };
+
+  const goToCreateExchangeAd = () => {
+    navigation.navigate("CreateExchangeAd");
+    closeMenu();
+  };
+
+  const goToExchangeRequests = () => {
+    navigation.navigate("ExchangeRequests");
+    closeMenu();
+  };
+
+
+
   const contentChanger = (screen) => {
     setHomeScreenContent(screen);
   };
@@ -238,7 +255,7 @@ function HomeScreenAdmin() {
           </TouchableOpacity>
 
           <TouchableOpacity>
-            <Text style={styles.drawerMenuLinks}>Book Exchanges</Text>
+            <Text style={styles.drawerMenuLinks} onPress={goToExchangeRequests}>Book Exchanges</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={goToDonationInterests}>
@@ -250,7 +267,11 @@ function HomeScreenAdmin() {
           </TouchableOpacity>
 
           <TouchableOpacity>
-            <Text style={styles.drawerMenuLinks}>Publish Exchange Ad</Text>
+            <Text style={styles.drawerMenuLinks} onPress={goToCreateExchangeAd}>Publish Exchange Ad</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity>
+            <Text style={styles.drawerMenuLinks} onPress={goToDisplayExchangeAds}>Exchange Ads</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => logout()}>

@@ -23,6 +23,8 @@ app.use('/book' , bookRoutes);
 app.use('/wishlist' , wishlist);
 app.use('/bookrequest' , request );
 app.use('/bookreqlist' , requestlist);
+app.use('/api/exchangead', require('./routes/exchangead_route'));
+app.use('/bookpals/exchangerequests', require('./routes/bookrequest.route'));
 
 
 app.use(errorHandler);
