@@ -47,13 +47,65 @@ const WishlistScreen = ({ navigation }) => {
       shadowOpacity: 0.3,
       shadowRadius: 3,
     },
+
+    notificationDetailsContainer: {
+      marginBottom: 15,
+      paddingRight: 10,
+      height: 100,
+      marginHorizontal:15,
+      borderRadius: 5,
+      borderWidth: 1,
+      borderColor: "grey",
+      backgroundColor: "#F6F2EA",
+      padding: 10,
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.3,
+      shadowRadius: 3,
+    },
   });
 
   const styles1 = StyleSheet.create({
     container: {
       fontSize: 20,
       fontWeight: '400',
-      marginBottom: 10,
+      
+    },
+
+    screenHeadingContainer: {
+      width: "100%",
+      padding: 10,
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "flex-start"
+    },
+  
+    backBtn: {
+      width: 50,
+      height: 50,
+      marginLeft: 10,
+      padding: 8,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
+    },
+  
+    backIcon: {
+      width: 32,
+      height: 32
+    },
+  
+    screenHeading: {
+      marginLeft: 95,
+      fontSize: 28,
+      fontWeight: "600",
+      color: "#192A56",
+      alignSelf:'center'
     },
   });
 
@@ -64,6 +116,16 @@ const WishlistScreen = ({ navigation }) => {
       marginBottom: 10,
       fontStyle: 'italic',
     },
+
+    status: {
+      fontSize: 18,
+      fontWeight: '500',
+      marginBottom: 10,
+      color:'rgba(0,0,0,.6)'
+    },
+
+
+
   });
 
   useEffect(() => {
@@ -73,6 +135,10 @@ const WishlistScreen = ({ navigation }) => {
   useEffect(() => {
     getWishlist();
   }, [userId]);
+
+  const goToHomeScreen = () => {
+    navigation.navigate("HomeScreenUser");
+  };
 
   const getWishlist = () => {
     axios.get(`http://192.168.1.27:3500/bookreqlist/read/${userId}`)
@@ -88,13 +154,17 @@ const WishlistScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#FFF' }}>
+      <View style={styles1.screenHeadingContainer}>
+        <TouchableOpacity style={styles1.backBtn} onPress={goToHomeScreen}>
+          <Image
+            source={require("../assets/icons/back.png")}
+            style={styles1.backIcon}
+          />
+        </TouchableOpacity>
+        <Text style={styles1.screenHeading}>Requests</Text>
+      </View>
       <View>
-        <Text style={{
-          fontSize: 28,
-          alignSelf: 'center',
-          fontWeight: '500',
-          marginBottom: 20
-        }}>Requests</Text>
+        
         {isLoading ? ( // Render loading indicator while isLoading is true
           <ActivityIndicator size="large" color="#FA7A50" style={{ marginTop: 20 }} />
         ) : (
@@ -102,10 +172,15 @@ const WishlistScreen = ({ navigation }) => {
             data={wishlist}
             keyExtractor={(item) => item._id}
             renderItem={({ item }) => (
-              <TouchableOpacity style={styles2.container} onPress={() => navigateToBookInfoForm(item._id)}>
+              <TouchableOpacity style={styles2.notificationDetailsContainer} onPress={() => navigateToBookInfoForm(item._id)}>
+                <Image source={require("../assets/bookList.png")}
+                    style={{ width: 100, height: 130 , borderRadius:5}}
+                  />
+                <View style={{padding:5}}>
                 <Text style={styles1.container}>{item.BookName}</Text>
                 <Text style={styles.container}>{item.authorName}</Text>
-                <Text style={styles.container}>{item.status}</Text>
+                <Text style={styles.status}>{item.status}</Text>
+                </View>
               </TouchableOpacity>
             )}
           />

@@ -1,5 +1,5 @@
 import React , {useState , useEffect} from "react";
-import { Text, View , ScrollView} from "react-native";
+import { Text, View , ScrollView , StyleSheet , TouchableOpacity , Image} from "react-native";
 import UserInputs from "../components/Book/bookInputs";
 import UserInputs1 from "../components/Book/bookAdressInput";
 import SignUpBtn from "../components/Book/bookSubmitBtn";
@@ -24,6 +24,7 @@ const SignIn = ({navigation}) => {
     const route = useRoute({ route });
     const { bookName} = route.params;
     const { bookAuthor } = route.params;
+    const {bookCategory} = route.params;
 
     const [userId, setUserId] = useState("null");
     
@@ -50,6 +51,10 @@ const SignIn = ({navigation}) => {
     useEffect(() => {
       getUserPreferences();
     }, []);
+
+    const goToHomeScreen = () => {
+        navigation.navigate("HomeScreenUser");
+      };
 
 
     const newRequest = async () => {
@@ -95,7 +100,7 @@ const SignIn = ({navigation}) => {
           setRequestMessageVisible(true);
           setTimeout(() => {
             setRequestMessageVisible(false);
-            navigation.navigate("SuccessScreen"); // Replace "OtherPage" with the actual page name you want to navigate to
+            navigation.navigate("SuccessScreen" , { bookCategory }); // Replace "OtherPage" with the actual page name you want to navigate to
           }, 5000);
 
         } else {
@@ -109,16 +114,60 @@ const SignIn = ({navigation}) => {
       }
     };
 
+    const styles1 = StyleSheet.create({
+      container: {
+        fontSize: 20,
+        fontWeight: '400',
+        marginBottom: 10,
+      },
+  
+      screenHeadingContainer: {
+        width: "100%",
+        padding: "10",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-start"
+      },
+    
+      backBtn: {
+        width: 50,
+        height: 50,
+        marginLeft: 10,
+        padding: 8,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+      },
+    
+      backIcon: {
+        width: 32,
+        height: 32
+      },
+    
+      screenHeading: {
+        marginLeft: 65,
+        fontSize: 28,
+        fontWeight: "600",
+        color: "#192A56",
+        alignSelf:'center'
+      },
+    });
+
 
     return (
         <KeyboardAwareScrollView contentContainerStyle ={{flex : 1 , justifyContent : "center" , backgroundColor:'#FFF'}}>
+            <View style={styles1.screenHeadingContainer}>
+        <TouchableOpacity style={styles1.backBtn} onPress={goToHomeScreen}>
+          <Image
+            source={require("../assets/icons/back.png")}
+            style={styles1.backIcon}
+          />
+        </TouchableOpacity>
+        <Text style={styles1.screenHeading}>Request Book</Text>
+      </View>
+           
             
-            <Text style={{fontSize:28 , fontWeight:'500' , alignSelf:'center'}}>
-                Request Book
-            </Text>
-            <Text>{bookName}</Text>
-            <Text>{bookAuthor}</Text>
-            <Text>{userId}</Text>
             <Text style={{
             
             color: "#FA7A50",

@@ -60,8 +60,26 @@ const displayBookDetails = asyncHandler(async (req, res) => {
   }
 });
 
+const readBookBycategory = asyncHandler(async (req, res) => {
+  const category = req.params.bookCategory;
+
+  try {
+    const response = await bookModel.find({ bookCategory: category });
+
+    if (response && response.length > 0) { // Check if there are books found
+      res.status(200).json(response);
+    } else {
+      res.status(404).json({ message: "Books not found in this category" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+
 module.exports = {
   createBook,
   getAllBooks,
-  displayBookDetails
+  displayBookDetails,
+  readBookBycategory
 };

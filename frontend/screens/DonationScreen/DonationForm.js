@@ -6,6 +6,7 @@ import { Picker } from "@react-native-picker/picker";
 import axiosInstance from "../../api/axios";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 
 function DonationForm() {
   const navigation = useNavigation();
@@ -101,6 +102,7 @@ function DonationForm() {
   };
 
   return (
+    <KeyboardAwareScrollView>
     <View style={styles.donationFormContainer}>
       {/* screen heading container */}
       <View style={styles.screenHeadingContainer}>
@@ -217,6 +219,7 @@ function DonationForm() {
         </View>
       )}
     </View>
+    </KeyboardAwareScrollView>
   );
 }
 
