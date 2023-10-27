@@ -91,7 +91,7 @@ const BookPage = ( { route } ) => {
       setWishlistMessage('Book added to the wish list');
   
       // Make a POST request to add the book to the wishlist
-      axios.post('http://192.168.1.27:3500/wishlist/create', {
+      axios.post('http://192.168.8.159:3500/wishlist/create', {
         userID : userId,
         BookName: bookData.bookName,
         authorName: bookData.bookAuthor,
@@ -115,7 +115,7 @@ const BookPage = ( { route } ) => {
 
   const getBookDetails = (bookid) => {
     axios
-      .get(`http://192.168.1.27:3500/bookpals/books/display-book/${bookid}`)
+      .get(`http://192.168.8.159:3500/bookpals/books/display-book/${bookid}`)
       .then((res) => {
         setBookData(res.data);
       })

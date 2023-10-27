@@ -72,7 +72,7 @@ const SignIn = ({navigation}) => {
           selectedbookauthor : bookAuthor
         };
   
-        const response = await fetch('http://192.168.1.27:3500/bookrequest/create', {
+        const response = await fetch('http://192.168.8.159:3500/bookrequest/create', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ const SignIn = ({navigation}) => {
           status: "Request Sent"
         };
   
-        const reqlistResponse = await fetch('http://192.168.1.27:3500/bookreqlist/create', {
+        const reqlistResponse = await fetch('http://192.168.8.159:3500/bookreqlist/create', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
