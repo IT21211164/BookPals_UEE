@@ -2,29 +2,29 @@ import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-function RegistrationSuccess() {
+function UpdateSuccess() {
   const navigation = useNavigation();
-  const navigateToLogin = () => {
-    navigation.navigate("LoginForm");
+  const navigateToHome = () => {
+    navigation.navigate("HomeScreenUser");
   };
 
   return (
     <View style={styles.pageContainer}>
-      <Text style={styles.screenHeading}>Registration Successful!</Text>
+      <Text style={styles.screenHeading}>Preference Changed!</Text>
 
       <Image
-        source={require("../../assets/placeholders/account-created.png")}
+        source={require("../../assets/placeholders/preference-changed.png")}
         style={styles.placeholderImage}
       />
 
       <Text style={styles.phrase}>
-        Welcome to Book Pals! Thank you for joining our community of book
-        enthusiasts. You can now log in using the email and password you
-        provided during registration. Start exploring, discovering, and sharing
-        the world of books with Book Pals."
+        Thank you for updating your preferred book category. Your changes have
+        been noted, and the new category selections will be applied the next
+        time you log into the system. Enjoy a more personalized reading
+        experience!
       </Text>
-      <TouchableOpacity style={styles.navigateBtn} onPress={navigateToLogin}>
-        <Text style={styles.navBtnText}>Login</Text>
+      <TouchableOpacity style={styles.navigateBtn} onPress={navigateToHome}>
+        <Text style={styles.navBtnText}>Continue</Text>
       </TouchableOpacity>
     </View>
   );
@@ -36,14 +36,14 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "column",
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     padding: 10,
+    paddingTop: 40,
     backgroundColor: "white"
   },
 
   navigateBtn: {
-    marginTop: 20,
     width: 140,
     height: 45,
     backgroundColor: "#FA7A50",
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   placeholderImage: {
     width: "80%",
     height: 400,
-    marginTop: 10
+    marginTop: 20
   },
 
   phrase: {
@@ -80,4 +80,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default RegistrationSuccess;
+export default UpdateSuccess;

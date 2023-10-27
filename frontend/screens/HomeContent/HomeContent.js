@@ -27,6 +27,7 @@ function HomeContent() {
   const [scienceFiction, setScienceFiction] = useState([]);
   const [romanceBooks, setRomanceBooks] = useState([]);
   const [recommendedBooks, setRecommendedBooks] = useState([]);
+  const [edChoice, setEdchoice] = useState([]);
   const [searchPrompt, setSearchPrompt] = useState("");
 
   const navigation = useNavigation();
@@ -81,11 +82,15 @@ function HomeContent() {
     const awarded = bookData.filter(
       (book) => book.bookCategory === "Award Winning"
     );
+    const editorChoice = bookData.filter(
+      (book) => book.bookCategory === "Editor Choice"
+    );
 
     setRecommendedBooks(recommended);
     setActionBooks(action);
     setAwardWinning(awarded);
     setScienceFiction(fiction);
+    setEdchoice(editorChoice);
   }, [bookData]);
 
   const searchBook = () => {
@@ -104,6 +109,20 @@ function HomeContent() {
 
   return (
     <View style={styles.homeContainer}>
+      {userRole === "content-curator" ? (
+        <Image
+          source={require("../../assets/placeholders/adminBanner.png")}
+          style={{
+            width: "90%",
+            display: "flex",
+            marginBottom: 10,
+            marginLeft: 20
+          }}
+        />
+      ) : (
+        <Text></Text>
+      )}
+
       {/* search bar */}
       <View style={styles.searchContainer}>
         <TextInput
@@ -151,6 +170,28 @@ function HomeContent() {
         >
           {!booksContentLoading ? (
             awardWinning.map((item, index) => {
+              const { _id } = item;
+              return <Book key={_id} item={item} />;
+            })
+          ) : (
+            <ActivityIndicator
+              size="large"
+              color="#FA7A50"
+              style={{ marginLeft: 180 }}
+            />
+          )}
+        </ScrollView>
+      </View>
+
+      <Text style={styles.subHeadline}>Editors Choice</Text>
+      <View style={styles.bookShelfContainer}>
+        <ScrollView
+          showsHorizontalScrollIndicator={false}
+          horizontal={true}
+          style={{ width: "100%", height: "100%" }}
+        >
+          {!booksContentLoading ? (
+            edChoice.map((item, index) => {
               const { _id } = item;
               return <Book key={_id} item={item} />;
             })

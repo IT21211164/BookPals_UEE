@@ -5,6 +5,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Picker } from "@react-native-picker/picker";
 import axiosInstance from "../../api/axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Toast from "react-native-toast-message";
 
 function DonationForm() {
   const navigation = useNavigation();
@@ -13,11 +14,12 @@ function DonationForm() {
     navigation.navigate("DonationGuidelines");
   };
 
-  const [donorName, setDonorName] = useState();
-  const [donorPhone, setDonorPhone] = useState();
-  const [donorAddress, setDonorAddress] = useState();
-  const [donationItemCategory, setDonationItemCategory] = useState();
-  const [donatingItem, setDonatingItem] = useState();
+  const [donorName, setDonorName] = useState("");
+  const [donorPhone, setDonorPhone] = useState("");
+  const [donorAddress, setDonorAddress] = useState("");
+  const [donationItemCategory, setDonationItemCategory] =
+    useState("Stationary-Items");
+  const [donatingItem, setDonatingItem] = useState("");
 
   const [userId, setUserId] = useState("null");
   const [userRole, setuserRole] = useState("null");
@@ -51,6 +53,37 @@ function DonationForm() {
   }, []);
 
   const openConfirmation = () => {
+    if (donorName === "" || donorName === " ") {
+      return Toast.show({
+        type: "error",
+        text1: "Donor name required!",
+        text2: "Donor name can not be an empty field."
+      });
+    }
+
+    if (donorPhone.length !== 10) {
+      return Toast.show({
+        type: "error",
+        text1: "Phone number required!",
+        text2: "Donor phone number should contain 10 digits"
+      });
+    }
+
+    if (donorAddress === "" || donorAddress === " ") {
+      return Toast.show({
+        type: "error",
+        text1: "Donor address required!",
+        text2: "Donor address can not be an empty field."
+      });
+    }
+
+    if (donatingItem === "" || donatingItem === " ") {
+      return Toast.show({
+        type: "error",
+        text1: "Donating item list required!",
+        text2: "Brief description of items required!"
+      });
+    }
     setPopupOpen(true);
   };
 
@@ -83,10 +116,19 @@ function DonationForm() {
         if (donationSubmitResponse) {
           console.log(donationSubmitResponse.data);
           setPopupOpen(false);
+          Toast.show({
+            type: "success",
+            text1: "Donation Interest Sent!",
+            text2: "Your interest sent notified to the management!"
+          });
           navigation.navigate("ThankYouScreen");
         }
       } catch (error) {
-        Alert.alert("Submission Failed", "Something went wrong!");
+        Toast.show({
+          type: "error",
+          text1: "Interest can not be sent!",
+          text2: "Something went wrong! Please try again!"
+        });
         setPopupOpen(false);
         console.log("Error:", error);
       }
@@ -224,10 +266,10 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     height: "100%",
-    backgroundColor: "rgba(0,0,0,0.6)",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,.6)"
   },
 
   popupMessageContainer: {
@@ -298,7 +340,8 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "white"
   },
 
   screenHeadingContainer: {

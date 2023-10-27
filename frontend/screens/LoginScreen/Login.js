@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   View,
   Text,
+  Image,
   TextInput,
   TouchableOpacity,
   StyleSheet,
@@ -72,6 +73,11 @@ const LoginForm = () => {
     <View style={styles.container}>
       <Text style={styles.appLogo}>"Book Pals"</Text>
 
+      <Image
+        source={require("../../assets/placeholders/login.png")}
+        style={styles.placeholderImage}
+      />
+
       <Text style={styles.loginLabel}>Email Address</Text>
       <TextInput
         style={styles.input}
@@ -92,7 +98,7 @@ const LoginForm = () => {
         style={styles.loginButton}
         onPress={() => handleLogin()}
       >
-        <Text style={styles.buttonText}>Submit</Text>
+        <Text style={styles.buttonText}>Sign in</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate("RegisterForm")}>
         <Text
@@ -123,7 +129,7 @@ const styles = StyleSheet.create({
   appLogo: {
     fontSize: 44,
     letterSpacing: 5,
-    marginBottom: 30,
+    marginBottom: 10,
     fontWeight: "600",
     color: "#FA7A50"
   },
@@ -160,6 +166,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 20,
     fontWeight: "500"
+  },
+
+  placeholderImage: {
+    width: "80%",
+    height: 300
   }
 });
 

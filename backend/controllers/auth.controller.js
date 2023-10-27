@@ -81,4 +81,27 @@ const userLogin = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { registerUser, registerAdmin, userLogin };
+// update prefered category
+const updatePreferedCategory = asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  // check whether the user is existing for proceed the update status
+  const checkInstance = await userModel.findById(id);
+
+  if (checkInstance) {
+    const response = await userModel.findByIdAndUpdate(id, { ...req.body });
+    if (response) {
+      res.status(200).json(response);
+    } else {
+      res.status(403).json("book category can not be updated");
+    }
+  } else {
+    res.status(404).json("book category does not exist in the database");
+  }
+});
+
+module.exports = {
+  registerUser,
+  registerAdmin,
+  userLogin,
+  updatePreferedCategory
+};

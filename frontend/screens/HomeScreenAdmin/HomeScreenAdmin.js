@@ -75,7 +75,7 @@ function HomeScreenAdmin() {
   return (
     <View style={styles.container}>
       <View style={styles.homeTopBar}>
-        <Text style={styles.appLogoText}>Admin</Text>
+        <Text style={styles.appLogoText}>Book Pals</Text>
         <TouchableOpacity
           style={{ marginRight: 10 }}
           onPress={() => openMenu()}
@@ -88,7 +88,7 @@ function HomeScreenAdmin() {
       </View>
 
       {/* home content container */}
-      <ScrollView style={{ flex: 1, width: "100%", height: 700 }}>
+      <ScrollView style={{ flex: 1, width: "100%", height: 400 }}>
         {homeScreenContent === 1 ? (
           <HomeContent />
         ) : homeScreenContent === 2 ? (

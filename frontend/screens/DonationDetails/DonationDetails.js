@@ -3,6 +3,7 @@ import axiosInstance from "../../api/axios";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+import Toast from "react-native-toast-message";
 
 function DonationDetails() {
   const [popupOpen, setPopupOpen] = useState(false);
@@ -63,6 +64,11 @@ function DonationDetails() {
           receiverRole: "user"
         }
       );
+      Toast.show({
+        type: "success",
+        text1: "Notification Dispatched!",
+        text2: "A notification sent to the donor!"
+      });
       console.log({
         senderName: "Admin Department",
         senderRole: "Content-Curator",

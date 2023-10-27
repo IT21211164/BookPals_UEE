@@ -27,6 +27,7 @@ import DonorsList from "./screens/DonorsList/DonorsList";
 import DonationDetails from "./screens/DonationDetails/DonationDetails";
 import ThankYouScreen from "./screens/ThankYouSceen/ThankYouScreen";
 import SearchResults from "./screens/SearchResults/SearchResults";
+import UpdateSuccess from "./screens/UpdateSuccessScreen/UpdateSuccess";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import BookInfo from "./screens/bookInfo";
@@ -62,6 +63,7 @@ export default function App() {
           <Stack.Screen name="DonorsList" component={DonorsList} />
           <Stack.Screen name="DonationDetails" component={DonationDetails} />
           <Stack.Screen name="ThankYouScreen" component={ThankYouScreen} />
+          <Stack.Screen name="UpdateSuccess" component={UpdateSuccess} />
           <Stack.Screen name="SearchResults" component={SearchResults} />
 
           <Stack.Screen name="BookInfo" component={BookInfo} />

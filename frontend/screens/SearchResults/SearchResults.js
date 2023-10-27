@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -9,15 +9,50 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
+import NoResults from "../../components/NoResults";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function SearchResults() {
   const navigation = useNavigation();
   const route = useRoute();
 
   const results = route.params.results;
+  const [userId, setUserId] = useState("null");
+  const [userRole, setuserRole] = useState("null");
+  const [userName, setuserName] = useState("null");
+  const [preferedCategory, setpreferedCategory] = useState("null");
+
+  const getUserPreferences = async () => {
+    try {
+      await AsyncStorage.getItem("user", async (err, savedUser) => {
+        if (!err) {
+          const currentUser = JSON.parse(savedUser);
+          if (currentUser) {
+            setUserId(currentUser.id);
+            setuserRole(currentUser.role);
+            setuserName(currentUser.username);
+            setpreferedCategory(currentUser.category);
+          }
+        } else {
+          // Handle AsyncStorage error
+          console.log(err);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getUserPreferences();
+  }, []);
 
   const navigateToHome = () => {
-    navigation.navigate("HomeScreenUser");
+    if (userRole === "content-curator") {
+      navigation.navigate("HomeScreenAdmin");
+    } else {
+      navigation.navigate("HomeScreenUser");
+    }
   };
 
   return (
@@ -86,7 +121,7 @@ function SearchResults() {
           })}
         </ScrollView>
       ) : (
-        <Text>No Books Found</Text>
+        <NoResults />
       )}
     </View>
   );
