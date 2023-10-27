@@ -92,11 +92,14 @@ const ExchangeRequestDetails = () => {
                 <Text style={styles2.screenHeading}>Request Content</Text>
                 
             </View>
+
+            {reqStatus == "Request Sent" ? "":
             <View style={styles2.statusBar} >
                 <Text style={reqStatus == "Accepted" ? styles2.orderStatusAccept : reqStatus == "Rejected" ? styles2.orderStatusReject : ""}>
-                            {reqStatus == "Request Sent" ? "": `Request  ${reqStatus}`}
+                            {`Request  ${reqStatus}`}
                 </Text>
             </View>
+            }       
 
                 <ScrollView>
                     {/*<Text style = {styles2.requestsheader}>Exchange Request for</Text>

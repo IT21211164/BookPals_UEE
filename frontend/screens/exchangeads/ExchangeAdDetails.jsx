@@ -138,7 +138,7 @@ const ExchangeAdDetails = () => {
                 
             </View>
 
-            <ScrollView keyboardShouldPersistTaps="always">
+            <ScrollView keyboardShouldPersistTaps="always" style={{width:"100%"}}>
 
                     <View>
 

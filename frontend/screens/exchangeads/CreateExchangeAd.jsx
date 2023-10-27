@@ -82,8 +82,8 @@ const CreateExchangeAd = () => {
                 
             </View>
             <Text style={styles.subHeading}>Fill Exchange Ad Form</Text>
-
-            <ScrollView keyboardShouldPersistTaps="always">
+            
+            <ScrollView keyboardShouldPersistTaps="always" style={{width:"100%"}}>
                 <View>
 
                     <View style = {{width:315, marginTop:20, alignSelf:"center"}}>

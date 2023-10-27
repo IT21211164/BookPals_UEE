@@ -75,13 +75,11 @@ const styles = StyleSheet.create({
     detailrow:{
         flexDirection:"row",
         margin:3,
-
     },
     label:{
         width:140,
         fontWeight:"500",
         fontSize:16,
-        fontStyle:"italic"
     },
     requesterdetail:{
         fontWeight:"400",
@@ -130,22 +128,30 @@ const styles = StyleSheet.create({
     },
 
     orderStatusAccept:{
-        fontSize: 22,
-        marginTop: 10,
-        marginBottom:20,
+        fontSize: 21,
         fontWeight:"500",
-        color:"green"
-        
+        color:"green",
+        alignSelf:"center",
+        textAlign:"center",
+        fontStyle:"italic"
     },
     orderStatusReject:{
-        fontSize: 22,  
+        fontSize: 21,  
         fontWeight:"500",
-        color:"red",
-        marginTop: 10,
-        marginBottom:20,
+        color:"red",  
+        alignSelf:"center",
+        textAlign:"center",
+        fontStyle:"italic",
+        
     },
     statusBar:{
-        width:300,
+        width:"100%",
+        height:40,
+        backgroundColor:"white",
+        marginBottom:15,
+        justifyContent:"center",
+        borderWidth:1,
+        borderColor:"rgba(25, 42, 86, 0.3)"
     },
 
     //confirmation screen styles
