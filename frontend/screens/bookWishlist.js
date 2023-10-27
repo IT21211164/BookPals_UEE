@@ -121,7 +121,7 @@ const WishlistScreen = ({ navigation }) => {
 
 
   const getWishlist = () => {
-    axios.get(`http://192.168.8.159:3500/wishlist/read/${userId}`)
+    axios.get(`http://192.168.8.117:3500/wishlist/read/${userId}`)
       .then((response) => {
         setWishlist(response.data);
         setIsLoading(false); // Set loading to false when data is fetched
@@ -148,7 +148,7 @@ const WishlistScreen = ({ navigation }) => {
           onPress: () => {
             // Delete the item
             axios
-              .delete(`http://192.168.8.159:3500/wishlist/delete/${id}`)
+              .delete(`http://192.168.8.117:3500/wishlist/delete/${id}`)
               .then(() => {
                 // Remove the item from the local state
                 setWishlist((prevWishlist) =>
