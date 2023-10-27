@@ -6,6 +6,7 @@ const bookRoutes = require('./routes/bookinfo.route');
 const wishlist = require('./routes/wishlist.route');
 const request = require('./routes/bookrequest.route');
 const requestlist = require('./routes/bookreqlist.route');
+const bookpals_reviewRoutes = require('./routes/bookpals_reviewRouter');
 require("dotenv").config();
 
 const app = express();
@@ -23,6 +24,7 @@ app.use('/book' , bookRoutes);
 app.use('/wishlist' , wishlist);
 app.use('/bookrequest' , request );
 app.use('/bookreqlist' , requestlist);
+app.use('/api/reviews', bookpals_reviewRoutes);
 
 
 app.use(errorHandler);
