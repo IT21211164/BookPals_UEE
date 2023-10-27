@@ -18,17 +18,7 @@ const RequestMessage = ({ visible, message, onClose }) => {
         style = {{width : 100 , height: 150, alignSelf: 'center'}}
         ></Image>
           <Text>{message}</Text>
-          <TouchableOpacity onPress={onClose} style={{
-             backgroundColor : "#FFC436",
-             height: 30,
-             marginTop: 10,
-             justifyContent : "center",
-             borderRadius : 20,
-             marginHorizontal: 45,
-             marginBottom :10
-          }}>
-            
-          </TouchableOpacity>
+          
         </View>
       </View>
     </Modal>

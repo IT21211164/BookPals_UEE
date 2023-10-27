@@ -5,6 +5,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Picker } from "@react-native-picker/picker";
 import axiosInstance from "../../api/axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 import Toast from "react-native-toast-message";
 
 function DonationForm() {
@@ -142,6 +143,7 @@ function DonationForm() {
   };
 
   return (
+    <KeyboardAwareScrollView>
     <View style={styles.donationFormContainer}>
       {/* screen heading container */}
       <View style={styles.screenHeadingContainer}>
@@ -258,6 +260,7 @@ function DonationForm() {
         </View>
       )}
     </View>
+    </KeyboardAwareScrollView>
   );
 }
 

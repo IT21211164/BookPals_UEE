@@ -5,6 +5,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import BookImage from '../components/Book/BookImage';
 import Wishlistpop from '../components/Book/wishlistpop';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
 const styles1 = StyleSheet.create({
   container: {
     backgroundColor: '#F6F2EA',
@@ -13,7 +14,43 @@ const styles1 = StyleSheet.create({
     borderTopRightRadius: 40,
     paddingTop: 15,
     padding: 15,
+    borderWidth: 1,
+    borderColor: "grey",
+    marginHorizontal:5
   },
+
+  screenHeadingContainer: {
+    width: "100%",
+    padding: 10,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start"
+  },
+
+  backBtn: {
+    width: 50,
+    height: 50,
+    marginLeft: 10,
+    padding: 8,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+
+  backIcon: {
+    width: 32,
+    height: 32
+  },
+
+  screenHeading: {
+    marginLeft: 95,
+    fontSize: 24,
+    fontWeight: "600",
+    color: "#192A56",
+    alignSelf:'center'
+  },
+
 });
 
 const BookPage = ( { route } ) => {
@@ -54,7 +91,7 @@ const BookPage = ( { route } ) => {
       setWishlistMessage('Book added to the wish list');
   
       // Make a POST request to add the book to the wishlist
-      axios.post('http://192.168.1.27:3500/wishlist/create', {
+      axios.post('http://192.168.8.159:3500/wishlist/create', {
         userID : userId,
         BookName: bookData.bookName,
         authorName: bookData.bookAuthor,
@@ -78,7 +115,7 @@ const BookPage = ( { route } ) => {
 
   const getBookDetails = (bookid) => {
     axios
-      .get(`http://192.168.1.27:3500/bookpals/books/display-book/${bookid}`)
+      .get(`http://192.168.8.159:3500/bookpals/books/display-book/${bookid}`)
       .then((res) => {
         setBookData(res.data);
       })
@@ -97,14 +134,30 @@ const BookPage = ( { route } ) => {
 
   const navigation = useNavigation();
 
-    const navigateToRequestForm = (bookName , bookAuthor) => {
-        navigation.navigate("RequestForm" , {bookName , bookAuthor});
+    const navigateToRequestForm = (bookName , bookAuthor,bookCategory
+      ) => {
+        navigation.navigate("RequestForm" , {bookName , bookAuthor , bookCategory
+        });
+      };
+
+      const goToHomeScreen = () => {
+        navigation.navigate("HomeScreenUser");
       };
 
   return (
     <SafeAreaView style={{
       backgroundColor: '#FFF'
     }}>
+
+<View style={styles1.screenHeadingContainer}>
+        <TouchableOpacity style={styles1.backBtn} onPress={goToHomeScreen}>
+          <Image
+            source={require("../assets/icons/back.png")}
+            style={styles1.backIcon}
+          />
+        </TouchableOpacity>
+        <Text style={styles1.screenHeading}>Book Info</Text>
+      </View>   
 
 <View style = {{
         justifyContent: "center",
@@ -129,6 +182,7 @@ const BookPage = ( { route } ) => {
               fontStyle: 'italic',
               fontWeight: 'light'
             }}>{bookData.bookAuthor}</Text>
+           
             <Text style={{
               marginTop: 15,
               fontSize: 23
@@ -152,7 +206,7 @@ const BookPage = ( { route } ) => {
                   marginBottom: 30,
                   width: 200,
                 }}
-                onPress={() => navigateToRequestForm(bookData.bookName, bookData.bookAuthor)}
+                onPress={() => navigateToRequestForm(bookData.bookName, bookData.bookAuthor , bookData.bookCategory)}
 
               >
                 <Text style={{

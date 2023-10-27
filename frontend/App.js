@@ -35,7 +35,8 @@ import RequestForm from "./screens/requestBookForm";
 import SuccessScreen from "./screens/bookSuccessfull";
 import RequestList from "./screens/bookreqlist";
 import BookWishlist from "./screens/bookWishlist";
-import Toast from "react-native-toast-message";
+import Toast from "react-native-toast-message";import SugesstScreen from "./screens/suggestBooks";
+
 
 const Stack = createNativeStackNavigator();
 
@@ -44,7 +45,7 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="LoginForm"
+          initialRouteName="LoginFormr"
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name="LoginForm" component={LoginForm} />
@@ -70,7 +71,8 @@ export default function App() {
           <Stack.Screen name="RequestForm" component={RequestForm} />
           <Stack.Screen name="SuccessScreen" component={SuccessScreen} />
           <Stack.Screen name="RequestList" component={RequestList} />
-          <Stack.Screen name="BookWishlist" component={RequestList} />
+          <Stack.Screen name="BookWishlist" component={BookWishlist} />
+          <Stack.Screen name = "SugesstScreen" component = {SugesstScreen} />
         </Stack.Navigator>
       </NavigationContainer>
       <Toast />
