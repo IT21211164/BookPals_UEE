@@ -15,32 +15,34 @@ import ReviewCard from "../components/bookpals_ReviewCard";
 import filter from "lodash.filter";
 import { useNavigation } from "@react-navigation/native";
 import { useIsFocused } from "@react-navigation/native";
+import Spinner from "react-native-loading-spinner-overlay";
 
 const API_ENDPOINT = "http://192.168.8.117:3500/api/reviews/read";
 
 export default function ExploreReviews() {
 	const [searchQuery, setSearchQuery] = useState("");
-	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
 	const [reviews, setReviews] = useState([]);
 	const [fullData, setFullData] = useState([]);
 	const [refresh, setRefresh] = useState(false);
 	const [activeFilter, setActiveFilter] = useState("all");
 
+	const [isLoading, setIsLoading] = useState(false);
+
 	const isFocused = useIsFocused();
 
 	const navigation = useNavigation();
+
+	useEffect(() => {
+		setIsLoading(true);
+		fetchReviews();
+	}, [isFocused, refresh]);
 
 	// Navigation of the add review button
 	const handleAddReview = () => {
 		navigation.navigate("AddBookReviewForm");
 		setRefresh(true);
 	};
-
-	useEffect(() => {
-		setIsLoading(true);
-		fetchReviews();
-	}, [isFocused, refresh]);
 
 	// Fetch all reviews from the database
 	const fetchReviews = async () => {
@@ -49,10 +51,13 @@ export default function ExploreReviews() {
 
 			setReviews(response.data);
 			setFullData(response.data);
-			setIsLoading(false);
+			// setIsLoading(false);
 		} catch (error) {
 			console.error("Error fetching reviews: ", error);
 			setError(error);
+			// setIsLoading(false);
+		} finally {
+			// Set loading state to false when data fetching is done
 			setIsLoading(false);
 		}
 	};
@@ -94,7 +99,9 @@ export default function ExploreReviews() {
 	return (
 		<SafeAreaView style={styles.container}>
 			<View style={styles.header}>
-				<TouchableOpacity onPress={() => navigation.navigate("HomeScreenUser")}>
+				<TouchableOpacity
+					onPress={() => navigation.navigate("HomeScreenUser")}
+				>
 					<Image
 						source={require("../assets/back_btn_icon.png")}
 						style={styles.backButton}
@@ -113,7 +120,7 @@ export default function ExploreReviews() {
 			</View>
 			<TextInput
 				style={styles.searchInput}
-				placeholder="Search by book name"
+				placeholder="Search by book name/author"
 				clearButtonMode="always"
 				autoCapitalize="none"
 				autoCorrect={false}
@@ -181,6 +188,20 @@ export default function ExploreReviews() {
 					</Text>
 				</TouchableOpacity>
 			</View>
+
+			{isLoading ? (
+				<ActivityIndicator
+					size="large"
+					color="#FA7A50"
+					style={{ marginTop: 20, marginBottom: 20 }}
+				/>
+			) : (
+				<ScrollView style={styles.scrollArea}>
+					{filterReviews().map((review) => (
+						<ReviewCard key={review._id} review={review} />
+					))}
+				</ScrollView>
+			)}
 
 			<ScrollView style={styles.scrollArea}>
 				{filterReviews().map((review) => (

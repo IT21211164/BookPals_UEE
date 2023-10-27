@@ -13,10 +13,13 @@ import MyReviewCard from "../components/bookpals_MyReviewCard";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
+import Spinner from "react-native-loading-spinner-overlay";
 
 export default function MyReviews() {
 	const [reviews, setReviews] = useState([]);
-	const [userId, setUserId] = useState(null); 
+	const [userId, setUserId] = useState(null);
+
+	const [isLoading, setIsLoading] = useState(false);
 
 	const navigation = useNavigation();
 
@@ -30,6 +33,7 @@ export default function MyReviews() {
 	}, []);
 
 	useEffect(() => {
+		setIsLoading(true);
 		fetchUserReviews();
 	}, [userId]);
 
@@ -63,6 +67,9 @@ export default function MyReviews() {
 			setReviews(response.data);
 		} catch (error) {
 			console.error("Error fetching user reviews: ", error);
+		} finally {
+			// Set loading state to false when data fetching is done
+			setIsLoading(false);
 		}
 	};
 
@@ -80,6 +87,23 @@ export default function MyReviews() {
 				</TouchableOpacity>
 				<Text style={styles.headerText}>My Reviews</Text>
 			</View>
+
+			{isLoading ? (
+				<Spinner
+					visible={isLoading}
+					textContent=""
+					textStyle={{ color: "transparent" }}
+					color="#FA7A50"
+					overlayColor="transparent"
+				/>
+			) : (
+				<ScrollView style={styles.scrollArea}>
+					{reviews.map((review) => (
+						<MyReviewCard key={review._id} review={review} />
+					))}
+				</ScrollView>
+			)}
+
 			<ScrollView style={styles.scrollArea}>
 				{reviews.map((review) => (
 					<MyReviewCard key={review._id} review={review} />
