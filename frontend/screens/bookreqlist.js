@@ -141,7 +141,7 @@ const WishlistScreen = ({ navigation }) => {
   };
 
   const getWishlist = () => {
-    axios.get(`http://172.20.10.2:3500/bookreqlist/read/${userId}`)
+    axios.get(`http://192.168.227.139:3500/bookreqlist/read/${userId}`)
       .then((response) => {
         setWishlist(response.data);
         setIsLoading(false); // Set loading to false when data is fetched

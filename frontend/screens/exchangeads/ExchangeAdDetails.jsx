@@ -64,7 +64,7 @@ const ExchangeAdDetails = () => {
     //update ad
     const updateFormHandler = async(e) => {
 
-        axios.put(`http://192.168.8.100:3500/api/exchangead/updateAd/${id}`, {book_title, category, condition, image, description, terms_and_conditions})
+        axios.put(`http://192.168.227.139:3500/api/exchangead/updateAd/${id}`, {book_title, category, condition, image, description, terms_and_conditions})
         .then((res) => {
             if(res.data){
                 alert('Book Exchange Ad updated')
@@ -79,7 +79,7 @@ const ExchangeAdDetails = () => {
     //delete ad
     const deleteHandler = async(e) => {
 
-        axios.delete(`http://192.168.8.100:3500/api/exchangead/deleteAd/${id}`)
+        axios.delete(`http://192.168.227.139:3500/api/exchangead/deleteAd/${id}`)
         .then((res) => {
             if(res.data){
                 alert('Book Exchange Ad deleted');

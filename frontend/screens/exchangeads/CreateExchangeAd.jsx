@@ -54,7 +54,7 @@ const CreateExchangeAd = () => {
         e.preventDefault()
     
         console.log({title, category, condition, selectedImage, des, termsandconditions});
-        axios.post("http://192.168.8.100:3500/api/exchangead/createAd", {title, category, condition, selectedImage, des, termsandconditions})
+        axios.post("http://192.168.227.139:3500/api/exchangead/createAd", {title, category, condition, selectedImage, des, termsandconditions})
         .then((res) => {
             if(res.data){
                 alert('Book Exchange Ad created')

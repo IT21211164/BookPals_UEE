@@ -14,7 +14,7 @@ const BooksByCategory = ({ route }) => {
   useEffect(() => {
     // Make an API request to fetch books by category
     axios
-      .get(`http://172.20.10.2:3500/bookpals/books/display-books/${bookCategory}`)
+      .get(`http://192.168.227.139:3500/bookpals/books/display-books/${bookCategory}`)
       .then((response) => {
         setBooks(response.data);
       })

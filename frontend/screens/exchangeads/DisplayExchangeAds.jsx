@@ -22,7 +22,7 @@ const DisplayExchangeAds = () => {
     const [details,setDetails]=useState([]);
 
     function getExchangeAds(){
-        axios.get("http://192.168.8.100:3500/api/exchangead/displayAds").then((res)=>{
+        axios.get("http://192.168.227.139:3500/api/exchangead/displayAds").then((res)=>{
         setDetails(res.data);
         }).catch((err)=>{
             alert(err);
