@@ -268,7 +268,7 @@ const styles = StyleSheet.create({
   popupContainer: {
     position: "absolute",
     width: "100%",
-    height: "100%",
+    height: 900,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -338,7 +338,7 @@ const styles = StyleSheet.create({
 
   donationFormContainer: {
     width: "100%",
-    height: "100%",
+    height: 900,
     paddingTop: 30,
     display: "flex",
     flexDirection: "column",

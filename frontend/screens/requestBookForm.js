@@ -8,6 +8,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 import RequestMsg from '../components/Book/requestmassage';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Toast from "react-native-toast-message";
 
 const SignIn = ({navigation}) => {
     const [fullname , setFullName] = useState("");
@@ -58,6 +59,9 @@ const SignIn = ({navigation}) => {
 
 
     const newRequest = async () => {
+
+    
+
       try {
         const requestData = {
           userId : userId,
@@ -72,7 +76,7 @@ const SignIn = ({navigation}) => {
           selectedbookauthor : bookAuthor
         };
   
-        const response = await fetch('http://192.168.227.139:3500/bookrequest/create', {
+        const response = await fetch('http://172.20.10.2:3500/bookrequest/create', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -88,7 +92,7 @@ const SignIn = ({navigation}) => {
           status: "Request Sent"
         };
   
-        const reqlistResponse = await fetch('http://192.168.227.139:3500/bookreqlist/create', {
+        const reqlistResponse = await fetch('http://172.20.10.2:3500/bookreqlist/create', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -112,6 +116,34 @@ const SignIn = ({navigation}) => {
         console.error('Error adding order:', error);
        
       }
+      
+    };
+
+    const openConfirmation = () => {
+      if (fullname === "" || fullname === " ") {
+        return Toast.show({
+          type: "error",
+          text1: "Full name required!",
+          text2: "name can not be an empty field."
+        });
+      }
+  
+      if (phone.length !== 10) {
+        return Toast.show({
+          type: "error",
+          text1: "Phone number required!",
+          text2: "Phone number should contain 10 digits"
+        });
+      }
+  
+      if (address === "" || address === " ") {
+        return Toast.show({
+          type: "error",
+          text1: "Address required!",
+          text2: "Aaddress can not be an empty field."
+        });
+      }
+      newRequest();
     };
 
     const styles1 = StyleSheet.create({
@@ -188,7 +220,7 @@ const SignIn = ({navigation}) => {
         < UserInputs name = "Condition*" value = {condition} setValue = {setCondition} />
 
         
-            <SignUpBtn onPress={newRequest}/>
+            <SignUpBtn onPress={openConfirmation}/>
             <RequestMsg
         visible={requestMessageVisible}
         message="Your request has been sent successfully."
