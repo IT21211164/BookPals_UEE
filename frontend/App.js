@@ -36,6 +36,12 @@ import SuccessScreen from './screens/bookSuccessfull';
 import RequestList from './screens/bookreqlist';
 import BookWishlist from './screens/bookWishlist';
 
+import ExchangeRequests from "./screens/exchangerequests/ExchangeRequests";
+import ExchangeRequestDetails from "./screens/exchangerequestdetails/ExchangeRequestDetails";
+import CreateExchangeAd from "./screens/exchangeads/CreateExchangeAd";
+import DisplayExchangeAds from "./screens/exchangeads/DisplayExchangeAds";
+import ExchangeAdDetails from "./screens/exchangeads/ExchangeAdDetails";
+
 import AddBookReviewForm from "./screens/bookpals_addBookReview";
 import ExploreReviews from "./screens/bookpals_exploreReviews";
 import MyReviews from "./screens/bookpals_myReviews";
@@ -83,6 +89,12 @@ export default function App() {
           <Stack.Screen name = "ExploreReviews" component= {ExploreReviews} />
           <Stack.Screen name = "MyReviews" component={MyReviews} />
           <Stack.Screen name = "EditBookReview" component={EditBookReview} />
+          
+          <Stack.Screen name = "ExchangeRequests" component = {ExchangeRequests} />
+          <Stack.Screen name = "ExchangeRequestDetails" component = {ExchangeRequestDetails} />
+          <Stack.Screen name = "CreateExchangeAd" component = {CreateExchangeAd} />
+          <Stack.Screen name = "DisplayExchangeAds" component = {DisplayExchangeAds} />
+          <Stack.Screen name = "ExchangeAdDetails" component = {ExchangeAdDetails} />
 
         </Stack.Navigator>
       </NavigationContainer>
