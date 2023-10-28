@@ -17,7 +17,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useIsFocused } from "@react-navigation/native";
 import Spinner from "react-native-loading-spinner-overlay";
 
-const API_ENDPOINT = "http://192.168.8.117:3500/api/reviews/read";
+const API_ENDPOINT = "http://192.168.227.139:3500/api/reviews/read";
 
 export default function ExploreReviews() {
 	const [searchQuery, setSearchQuery] = useState("");

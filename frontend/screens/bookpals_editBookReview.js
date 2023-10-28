@@ -82,7 +82,7 @@ export default function EditBookReview() {
 		try {
 			// Send a PUT request to update the review
 			await axios.put(
-				`http://192.168.8.117:3500/api/reviews/update/${reviewId}`,
+				`http://192.168.227.139:3500/api/reviews/update/${reviewId}`,
 				{
 					bookName,
 					authorName,

@@ -61,7 +61,7 @@ export default function MyReviews() {
 	const fetchUserReviews = async () => {
 		try {
 			const response = await axios.get(
-				`http://192.168.8.117:3500/api/reviews/myreviews/${userId}`
+				`http://192.168.227.139:3500/api/reviews/myreviews/${userId}`
 			);
 
 			setReviews(response.data);

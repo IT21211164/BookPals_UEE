@@ -9,7 +9,7 @@ const ReviewCard = ({ review }) => {
 	const [isDownvoted, setIsDownvoted] = useState(false);
 	const [voteCount, setVoteCount] = useState(review.votes);
 
-	const API_ENDPOINT = "http://192.168.8.117:3500/api/reviews";
+	const API_ENDPOINT = "http://192.168.227.139:3500/api/reviews";
 
 	// Function to handle the upvote of a review
 	const handleUpvote = async () => {

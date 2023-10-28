@@ -96,7 +96,7 @@ function HomeScreenUser() {
           onPress={() => openMenu()}
         >
           <Image
-            source={require("../../assets/icons/drawer-menu-icon.png")}
+            source={require("../../assets/icons/drawerMenuSanta.png")}
             style={{ width: 30, height: 30 }}
           />
         </TouchableOpacity>
@@ -222,7 +222,7 @@ function HomeScreenUser() {
           <View style={styles.closeButtonContainer}>
             <TouchableOpacity onPress={() => closeMenu()}>
               <Image
-                source={require("../../assets/icons/drawer-menu-close.png")}
+                source={require("../../assets/icons/drawerMenuCloseSanta.png")}
                 style={{ width: 30, height: 30, marginRight: 20 }}
               />
             </TouchableOpacity>

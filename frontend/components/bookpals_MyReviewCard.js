@@ -40,7 +40,7 @@ export default function MyReviewCard({ review }) {
 	// Function to handle he delete function itself
 	const confirmDelete = async () => {
 		try {
-			await axios.delete(`http://192.168.8.117:3500/api/reviews/delete/${review._id}`);
+			await axios.delete(`http://192.168.227.139:3500/api/reviews/delete/${review._id}`);
 			console.log("Review Deleted Successfully");
 		} catch (error) {
 			console.error("Error deleting review: ", error);
