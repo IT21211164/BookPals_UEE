@@ -240,13 +240,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
-    marginTop: 10
+    marginTop: 25
   },
 
   popupContainer: {
     position: "absolute",
     width: "100%",
-    height: "100%",
+    height: 900,
     backgroundColor: "rgba(0,0,0,0.6)",
     display: "flex",
     justifyContent: "center",
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
 
   popupMessageContainer: {
     width: 360,
-    height: 200,
+    height: 190,
     borderRadius: 10,
     display: "flex",
     flexDirection: "column",
@@ -271,7 +271,8 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    
   },
 
   popupTitle: {
