@@ -30,11 +30,17 @@ import SearchResults from "./screens/SearchResults/SearchResults";
 import UpdateSuccess from "./screens/UpdateSuccessScreen/UpdateSuccess";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-import BookInfo from "./screens/bookInfo";
-import RequestForm from "./screens/requestBookForm";
-import SuccessScreen from "./screens/bookSuccessfull";
-import RequestList from "./screens/bookreqlist";
-import BookWishlist from "./screens/bookWishlist";
+import BookInfo from "./screens/bookInfo"; 
+import RequestForm from './screens/requestBookForm'; 
+import SuccessScreen from './screens/bookSuccessfull';
+import RequestList from './screens/bookreqlist';
+import BookWishlist from './screens/bookWishlist';
+
+import AddBookReviewForm from "./screens/bookpals_addBookReview";
+import ExploreReviews from "./screens/bookpals_exploreReviews";
+import MyReviews from "./screens/bookpals_myReviews";
+import EditBookReview from "./screens/bookpals_editBookReview";
+
 import Toast from "react-native-toast-message";import SugesstScreen from "./screens/suggestBooks";
 
 
@@ -73,6 +79,11 @@ export default function App() {
           <Stack.Screen name="RequestList" component={RequestList} />
           <Stack.Screen name="BookWishlist" component={BookWishlist} />
           <Stack.Screen name = "SugesstScreen" component = {SugesstScreen} />
+          <Stack.Screen name = "AddBookReviewForm" component= {AddBookReviewForm} />
+          <Stack.Screen name = "ExploreReviews" component= {ExploreReviews} />
+          <Stack.Screen name = "MyReviews" component={MyReviews} />
+          <Stack.Screen name = "EditBookReview" component={EditBookReview} />
+
         </Stack.Navigator>
       </NavigationContainer>
       <Toast />

@@ -60,6 +60,16 @@ function HomeScreenUser() {
     setDrawerMenuOpen(false);
   };
 
+  const navigateExploreReviews = () => {
+    navigation.navigate("ExploreReviews");
+    setDrawerMenuOpen(false);
+  };
+
+  const navigateMyReviews = () => {
+    navigation.navigate("MyReviews");
+    setDrawerMenuOpen(false);
+  };
+
   const contentChanger = (screen) => {
     setHomeScreenContent(screen);
   };
@@ -230,11 +240,11 @@ function HomeScreenUser() {
           </View>
 
           {/* links container section */}
-          <TouchableOpacity>
+          <TouchableOpacity onPress={navigateExploreReviews}>
             <Text style={styles.drawerMenuLinks}>Book Reviews</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={navigateMyReviews}>
             <Text style={styles.drawerMenuLinks}>My Book Reviews</Text>
           </TouchableOpacity>
 
